@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JigsawApp.MainPage">
+
+    <StackLayout BackgroundColor="LightBlue">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+ 
+            <Grid Grid.Row="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image
+                    Source="{Binding Image1}"
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    Margin="45,0,0,0"
+                    x:Name="PictureOne">
+                <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedRotate"
+                    NumberOfTapsRequired="2"/>
+                 <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedMove">
+                 </TapGestureRecognizer>
+                 </Image.GestureRecognizers>
+                 </Image>
+                
+                <Image 
+                    Source="{Binding Image2}" 
+                    Grid.Row="0" Grid.Column="1"
+                    Margin="0,0,45,0" 
+                    x:Name="PictureTwo">
+                <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                  Tapped="OnTapGestureRecognizerTappedRotate"
+                  NumberOfTapsRequired="2"/>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedMove">
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                
+            <Image
+                Source="{Binding Image3}" 
+                Grid.Row="1" Grid.Column="0"
+                Margin="45,0,0,0"
+                x:Name="PictureTree">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                Tapped="OnTapGestureRecognizerTappedRotate"
+                        NumberOfTapsRequired="2"/>
+                </Image.GestureRecognizers>
+            </Image>
+                
+            <Image
+                Source="{Binding Image4}" 
+                Grid.Row="1" Grid.Column="1"
+                Margin="0,0,45,0"
+                x:Name="PictureFour">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                Tapped="OnTapGestureRecognizerTappedRotate"
+                        NumberOfTapsRequired="2"/>
+                </Image.GestureRecognizers>
+            </Image>
+            </Grid>
+
+            <Button 
+                Grid.Row="2"
+                Margin="100,50,100,50"
+                Text="Start"
+                Clicked="StartGame">
+            </Button>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>
