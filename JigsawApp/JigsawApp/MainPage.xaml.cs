@@ -49,10 +49,41 @@ namespace JigsawApp
             set { pictureFourRot = value; OnPropertyChanged(); }
         }
 
+        private double pictureFiveRot;
+
+        public double PictureFiveRot
+        {
+            get { return pictureFiveRot; }
+            set { pictureFiveRot = value; OnPropertyChanged(); }
+        }
+        private double pictureSixRot;
+        public double PictureSixRot
+        {
+            get { return pictureSixRot; }
+            set { pictureSixRot = value; OnPropertyChanged(); }
+        }
+        private double pictureSevenRot;
+        public double PictureSevenRot
+        {
+            get { return pictureSevenRot; }
+            set { pictureSevenRot = value; OnPropertyChanged(); }
+        }
+        private double pictureEightRot;
+        public double PictureEightRot
+        {
+            get { return pictureEightRot; }
+            set { pictureEightRot = value; OnPropertyChanged(); }
+        }
+        private double pictureNineRot;
+        public double PictureNineRot
+        {
+            get { return pictureNineRot; }
+            set { pictureNineRot = value; OnPropertyChanged(); }
+        }
         public MainPage()
         {
             BindingContext = this;
-            StartGame();
+            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
         }
        
@@ -83,6 +114,26 @@ namespace JigsawApp
                 PictureTreeRot = imageSender.Rotation;
             }
             else if (imageSender.ClassId.ToString().Equals("Image4"))
+            {
+                PictureFourRot = imageSender.Rotation;
+            }
+            else if (imageSender.ClassId.ToString().Equals("Image5"))
+            {
+                PictureFourRot = imageSender.Rotation;
+            }
+            else if (imageSender.ClassId.ToString().Equals("Image6"))
+            {
+                PictureFourRot = imageSender.Rotation;
+            }
+            else if (imageSender.ClassId.ToString().Equals("Image7"))
+            {
+                PictureFourRot = imageSender.Rotation;
+            }
+            else if (imageSender.ClassId.ToString().Equals("Image8"))
+            {
+                PictureFourRot = imageSender.Rotation;
+            }
+            else if (imageSender.ClassId.ToString().Equals("Image9"))
             {
                 PictureFourRot = imageSender.Rotation;
             }
@@ -130,10 +181,30 @@ namespace JigsawApp
 
         private void Button_Clicked(object sender, EventArgs e)
         {
+
+            StartGame();
+
+            Random rnd = new Random();
+            var arr = new List<string> { "Zookie1.jpg", "Zookie2.jpg", "Zookie3.jpg", "Zookie4.jpg", "Zookie5.jpg", "Zookie6.jpg", "Zookie7.jpg", "Zookie8.jpg", "Zookie9.jpg" };
+            int x = arr.Count;
+            for (int i = 0; i < grd.RowDefinitions.Count; i++)
+            {
+                for (int j = 0; j < grd.ColumnDefinitions.Count; j++)
+                {
+                    int t = rnd.Next(x);
+                    FindByCell(grd, i, j).Source = arr[t];
+                    arr.RemoveAt(t);
+                    x--;
+
+                }
+
+                BtnStart.IsVisible = false;
+            }
+    
             CheckWinner();
         }
 
-        private void StartGame()
+         void StartGame()
         {
             /*
              PictureOne.Rotation = RotationGenerator();
@@ -141,7 +212,7 @@ namespace JigsawApp
              PictureTree.Rotation = RotationGenerator();
              PictureFour.Rotation = RotationGenerator();
             */
-           
+
             PictureOneRot = RotationGenerator();
             PictureTwoRot = RotationGenerator();
             PictureTreeRot = RotationGenerator();
@@ -161,7 +232,8 @@ namespace JigsawApp
         private void CheckWinner()
         {
             
-          if(PictureOneRot == 0 && PictureTwoRot == 0 && PictureTreeRot == 0 && pictureFourRot == 0)
+          if(PictureOneRot == 0 && PictureTwoRot == 0 && PictureTreeRot == 0 && pictureFourRot == 0 
+                && pictureFiveRot == 0 && pictureSixRot == 0 && pictureSevenRot == 0 && pictureEightRot == 0 && pictureNineRot == 0)
             {
                 DisplayAlert("Winner", "Du er en sand vinder!", "Bekræft");
             }

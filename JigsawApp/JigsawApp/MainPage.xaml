@@ -11,23 +11,25 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1" x:Name="grd">
+            <Grid Grid.Row="1" x:Name="grd" Margin="60,50,50,-30">
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Image
-                    Source="Zookie1.jpg"
+                  
                     ClassId="Image1"
                     Grid.Row="0" 
                     Grid.Column="0" 
-                    Margin="45,0,0,0"
+             
                     Rotation="{Binding PictureOneRot}"
                     
                     x:Name="PictureOne">
@@ -43,10 +45,10 @@
                  </Image>
                 
                 <Image 
-                    Source="Zookie2.jpg" 
+                   
                     ClassId="Image2"
                     Grid.Row="0" Grid.Column="1"
-                    Margin="0,0,45,0" 
+               
                     Rotation="{Binding PictureTwoRot}"
                     x:Name="PictureTwo">
                 <Image.GestureRecognizers>
@@ -60,10 +62,10 @@
                 </Image>
                 
             <Image
-                Source="Zookie3.jpg" 
+               
                 ClassId="Image3"
-                Grid.Row="1" Grid.Column="0"
-                Margin="45,0,0,0"
+                Grid.Row="0" Grid.Column="2"
+   
                 Rotation="{Binding PictureTreeRot}"
                 x:Name="PictureTree">
                 <Image.GestureRecognizers>
@@ -77,11 +79,11 @@
             </Image>
                 
             <Image 
-                Source="Zookie4.jpg" 
+               
                 ClassId="Image4"
                 Rotation="{Binding PictureFourRot}"
-                Grid.Row="1" Grid.Column="1"
-                Margin="0,0,45,0"
+                Grid.Row="1" Grid.Column="0"
+              
                 x:Name="PictureFour">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer
@@ -92,8 +94,110 @@
                         </TapGestureRecognizer>
                     </Image.GestureRecognizers>
             </Image>
+
+                <Image
+                   
+                    ClassId="Image5"
+                    Grid.Row="1" 
+                    Grid.Column="1" 
+               
+                    Rotation="{Binding PictureFiveRot}"
+                    
+                    x:Name="PictureFive">
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedRotate"
+                    NumberOfTapsRequired="2"/>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedMove">
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image
+                    
+                    ClassId="Image6"
+                    Grid.Row="1" 
+                    Grid.Column="2" 
+            
+                    Rotation="{Binding PictureSixRot}"
+                    
+                    x:Name="PictureSix">
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedRotate"
+                    NumberOfTapsRequired="2"/>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedMove">
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image
+                    
+                    ClassId="Image7"
+                    Grid.Row="2" 
+             
+                    Rotation="{Binding PictureSevenRot}"
+                    
+                    x:Name="PictureSeven">
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedRotate"
+                    NumberOfTapsRequired="2"/>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedMove">
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image
+                 
+                    ClassId="Image8"
+                    Grid.Row="2" 
+                    Grid.Column="1" 
+            
+                    Rotation="{Binding PictureEightRot}"
+                    
+                    x:Name="PictureEight">
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedRotate"
+                    NumberOfTapsRequired="2"/>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedMove">
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image
+                   
+                    ClassId="Image9"
+                    Grid.Row="2" 
+                    Grid.Column="2" 
+          
+                    Rotation="{Binding PictureNineRot}"
+                    
+                    x:Name="PictureNine">
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedRotate"
+                    NumberOfTapsRequired="2"/>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedMove">
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+
             </Grid>
-            <Button Text="Test" Clicked="Button_Clicked"></Button>
+            <Button 
+                x:Name="BtnStart"
+                Text="Start"
+                Clicked="Button_Clicked"></Button>
             
         </Grid>
     </StackLayout>

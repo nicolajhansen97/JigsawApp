@@ -11802,6 +11802,21 @@ namespace JigsawApp.Droid
 			// aapt resource value: 0x7F070094
 			public const int Zookie4 = 2131165332;
 			
+			// aapt resource value: 0x7F070095
+			public const int Zookie5 = 2131165333;
+			
+			// aapt resource value: 0x7F070096
+			public const int Zookie6 = 2131165334;
+			
+			// aapt resource value: 0x7F070097
+			public const int Zookie7 = 2131165335;
+			
+			// aapt resource value: 0x7F070098
+			public const int Zookie8 = 2131165336;
+			
+			// aapt resource value: 0x7F070099
+			public const int Zookie9 = 2131165337;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

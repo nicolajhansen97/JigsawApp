@@ -10,7 +10,9 @@ namespace JigsawApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            //MainPage = new MainPage();
+            // MainPage = new MenuScreen();
+            MainPage = new NavigationPage(new FrontPage());
         }
 
         protected override void OnStart()
