@@ -13,113 +13,46 @@ namespace JigsawApp
     public partial class MainPage : ContentPage
     {
 
-        public int ImageCounterClick = 0;
-        public int pictureOneÍD = 0;
-        public string pictureOnePath = "";
-        public int pictureTwoÍD = 0;
-        public string pictureTwoPath = "";
+        public static Image tmpImage = new Image();
+        public static Image tmpImage2 = new Image();
+        public int tmpRow, tmpCol, tmpRow2, tmpCol2;
 
-        private int pictureOneRot;
+        private double pictureOneRot;
 
-        public int PictureOneRot
+        public double PictureOneRot
         {
             get { return pictureOneRot; }
             set { pictureOneRot = value; OnPropertyChanged(); }
         }
 
-        private int pictureTwoRot;
+        private double pictureTwoRot;
 
-        public int PictureTwoRot
+        public double PictureTwoRot
         {
             get { return pictureTwoRot; }
             set { pictureTwoRot = value; OnPropertyChanged(); }
         }
 
-        private int pictureTreeRot;
+        private double pictureTreeRot;
 
-        public int PictureTreeRot
+        public double PictureTreeRot
         {
             get { return pictureTreeRot; }
             set { pictureTreeRot = value; OnPropertyChanged(); }
         }
 
-        private int pictureFourRot;
+        private double pictureFourRot;
 
-        public int PictureFourRot
+        public double PictureFourRot
         {
             get { return pictureFourRot; }
             set { pictureFourRot = value; OnPropertyChanged(); }
         }
 
-
-
-        private Image imageSenderTemp;
-
-        public Image ImageSenderTemp
-        {
-            get { return imageSenderTemp; }
-            set { imageSenderTemp = value; OnPropertyChanged(); }
-        }
-
-        private Image imageSenderTemp2;
-
-        public Image ImageSenderTemp2
-        {
-            get { return imageSenderTemp2; }
-            set { imageSenderTemp2 = value; OnPropertyChanged(); }
-        }
-
-        public string holderPictureOne = "";
-        public string holderPictureTwo = "";
-
-
-        private string image1;
-
-        public string Image1
-        {
-            get { return image1; }
-            set { image1 = value; OnPropertyChanged(); }
-        }
-
-
-        private string image2;
-
-        public string Image2
-        {
-            get { return image2; }
-            set { image2 = value; OnPropertyChanged(); }
-        }
-
-        private string image3;
-
-        public string Image3
-        {
-            get { return image3; }
-            set { image3 = value; OnPropertyChanged(); }
-        }
-        private string image4;
-
-        public string Image4
-        {
-            get { return image4; }
-            set { image4 = value; OnPropertyChanged(); }
-        }
-
-
-        ImagePuz img1 = new ImagePuz { Id = 1, Path = "Zookie1.jpg" };
-        ImagePuz img2 = new ImagePuz { Id = 2, Path = "Zookie2.jpg" };
-        ImagePuz img3 = new ImagePuz { Id = 3, Path = "Zookie3.jpg" };
-        ImagePuz img4 = new ImagePuz { Id = 4, Path = "Zookie4.jpg" };
-
         public MainPage()
         {
             BindingContext = this;
-            Image1 = img1.Path;
-            Image2 = img2.Path;
-            Image3 = img3.Path;
-            Image4 = img4.Path;
             StartGame();
-            CheckWinner();
             InitializeComponent();
         }
        
@@ -136,128 +69,68 @@ namespace JigsawApp
             {
                 imageSender.Rotation = imageSender.Rotation + 90;
             }
+
+            if(imageSender.ClassId.ToString().Equals("Image1"))
+            {
+                PictureOneRot = imageSender.Rotation;
+            }
+            else if (imageSender.ClassId.ToString().Equals("Image2"))
+            {
+                PictureTwoRot = imageSender.Rotation;
+            }
+            else if (imageSender.ClassId.ToString().Equals("Image3"))
+            {
+                PictureTreeRot = imageSender.Rotation;
+            }
+            else if (imageSender.ClassId.ToString().Equals("Image4"))
+            {
+                PictureFourRot = imageSender.Rotation;
+            }
         }
 
         void OnTapGestureRecognizerTappedMove(object sender, EventArgs args)
         {
-    
-            var imageSender = (Image)sender;
+            Image img = (Image)sender;
 
-            
-
-            if (ImageCounterClick == 0)
+            for (int i = 0; i < grd.RowDefinitions.Count; i++)
             {
-               string path = imageSender.Source.ToString().Replace("File: ", "");
-
-                imageSenderTemp = (Image)sender;
-
-                if (path == img1.Path)
-                    {
-                        pictureOneÍD = img1.Id;
-                        pictureOnePath = img1.Path;
-                    }
-                    else if (path == img2.Path)
-                    {
-                         pictureOneÍD = img2.Id;
-                         pictureOnePath = img2.Path;
-                    }
-                    else if (path == img3.Path)
-                    {
-                        pictureOneÍD = img3.Id;
-                        pictureOnePath = img3.Path;
-                    }
-                    else if (path == img4.Path)
-                    {
-                        pictureOneÍD = img4.Id;
-                        pictureOnePath = img4.Path;
-                    }
-
-                holderPictureOne = imageSender.ClassId;
-
-            }
-            else if (ImageCounterClick == 1)
-            {
-                string path = imageSender.Source.ToString().Replace("File: ", "");
-
-                if (path == img1.Path)
+                for (int j = 0; j < grd.ColumnDefinitions.Count; j++)
                 {
-                    pictureTwoÍD = img1.Id;
-                    pictureTwoPath = img1.Path;
+                    if (img.Id.Equals(FindByCell(grd, i, j).Id) && tmpImage.Source == null)
+                    {
+                        tmpImage.Source = FindByCell(grd, i, j).Source;
+                        tmpCol = j;
+                        tmpRow = i;
+                    }
+                    else if (img.Id.Equals(FindByCell(grd, i, j).Id) && tmpImage.Source != null)
+                    {
+                        tmpImage2.Source = FindByCell(grd, i, j).Source;
+                        tmpCol2 = j;
+                        tmpRow2 = i;
+                    }
                 }
-                else if (path == img2.Path)
-                {
-                    pictureTwoÍD = img2.Id;
-                    pictureTwoPath = img2.Path;
-                }
-                else if (path == img3.Path)
-                {
-                    pictureTwoÍD = img3.Id;
-                    pictureTwoPath = img3.Path;
-                }
-                else if (path == img4.Path)
-                {
-                    pictureTwoÍD = img4.Id;
-                    pictureTwoPath = img4.Path;
-                }
-
-                imageSenderTemp2 = imageSender;
-                movePuzzle();
-
-
-
             }
 
-            ImageCounterClick++;
-
-            if(ImageCounterClick == 2)
+            if (tmpImage.Source != null && tmpImage2.Source != null)
             {
-                ImageCounterClick = 0;
-            }
+                FindByCell(grd, tmpRow, tmpCol).Source = tmpImage2.Source;
+                FindByCell(grd, tmpRow2, tmpCol2).Source = tmpImage.Source;
+                tmpImage.Source = null;
+                tmpImage2.Source = null;
 
+                CheckWinner();
+            }
         }
 
-        private void movePuzzle()
+        Image FindByCell(Grid g, int row, int col)
         {
+            var childs = g.Children.Cast<Image>();
+            return childs.Where(x => Grid.GetRow(x) == row && Grid.GetColumn(x) == col).FirstOrDefault();
+        }
 
-            string pathOne = imageSenderTemp.Source.ToString().Replace("File: ", "");
-            string pathTwo = imageSenderTemp2.Source.ToString().Replace("File: ", "");
-
-
-          //  DisplayAlert("Alert", ImageSenderTemp.ClassId.ToString() + " " + imageSenderTemp2.ClassId.ToString(), "OK");
-
-            if (imageSenderTemp.ClassId == "Image1")
-            {
-                Image1 = pathTwo;
-            }
-            else if(imageSenderTemp.ClassId == "Image2")
-            {
-                Image2 = pathTwo;
-            }
-            else if (imageSenderTemp.ClassId == "Image3")
-            {
-                Image3 = pathTwo;
-            }
-            else if (imageSenderTemp.ClassId == "Image4")
-            {
-                Image4 = pathTwo;
-            }
-
-            if (imageSenderTemp2.ClassId == "Image1")
-            {
-                Image1 = pathOne;
-            }
-            else if (imageSenderTemp2.ClassId == "Image2")
-            {
-                Image2 = pathOne;
-            }
-            else if (imageSenderTemp2.ClassId == "Image3")
-            {
-                Image3 = pathOne;
-            }
-            else if (imageSenderTemp2.ClassId == "Image4")
-            {
-                Image4 = pathOne;
-            }
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            CheckWinner();
         }
 
         private void StartGame()
@@ -287,7 +160,11 @@ namespace JigsawApp
 
         private void CheckWinner()
         {
-          
+            
+          if(PictureOneRot == 0 && PictureTwoRot == 0 && PictureTreeRot == 0 && pictureFourRot == 0)
+            {
+                DisplayAlert("Winner", "Du er en sand vinder!", "Bekræft");
+            }
         }
     }
 

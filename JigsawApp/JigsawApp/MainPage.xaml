@@ -10,8 +10,8 @@
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
- 
-            <Grid Grid.Row="1">
+
+            <Grid Grid.Row="1" x:Name="grd">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
@@ -23,13 +23,15 @@
                 </Grid.ColumnDefinitions>
 
                 <Image
-                    Source="{Binding Image1}"
+                    Source="Zookie1.jpg"
                     ClassId="Image1"
                     Grid.Row="0" 
                     Grid.Column="0" 
                     Margin="45,0,0,0"
                     Rotation="{Binding PictureOneRot}"
+                    
                     x:Name="PictureOne">
+                    
                 <Image.GestureRecognizers>
                 <TapGestureRecognizer
                     Tapped="OnTapGestureRecognizerTappedRotate"
@@ -41,7 +43,7 @@
                  </Image>
                 
                 <Image 
-                    Source="{Binding Image2}" 
+                    Source="Zookie2.jpg" 
                     ClassId="Image2"
                     Grid.Row="0" Grid.Column="1"
                     Margin="0,0,45,0" 
@@ -58,7 +60,7 @@
                 </Image>
                 
             <Image
-                Source="{Binding Image3}" 
+                Source="Zookie3.jpg" 
                 ClassId="Image3"
                 Grid.Row="1" Grid.Column="0"
                 Margin="45,0,0,0"
@@ -75,7 +77,7 @@
             </Image>
                 
             <Image 
-                Source="{Binding Image4}" 
+                Source="Zookie4.jpg" 
                 ClassId="Image4"
                 Rotation="{Binding PictureFourRot}"
                 Grid.Row="1" Grid.Column="1"
@@ -91,7 +93,7 @@
                     </Image.GestureRecognizers>
             </Image>
             </Grid>
-
+            <Button Text="Test" Clicked="Button_Clicked"></Button>
             
         </Grid>
     </StackLayout>
