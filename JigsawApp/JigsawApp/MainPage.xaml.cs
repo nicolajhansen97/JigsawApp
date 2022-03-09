@@ -14,11 +14,63 @@ namespace JigsawApp
     {
 
         public int ImageCounterClick = 0;
-        public int pictureOnePositionRow = 0;
-        public int pictureOnePositionColumn = 0;
-        public int pictureTwoPositionRow = 0;
-        public int pictureTwoPositionColumn = 0;
-        public Image imageSenderTemp;
+        public int pictureOneÍD = 0;
+        public string pictureOnePath = "";
+        public int pictureTwoÍD = 0;
+        public string pictureTwoPath = "";
+
+        private int pictureOneRot;
+
+        public int PictureOneRot
+        {
+            get { return pictureOneRot; }
+            set { pictureOneRot = value; OnPropertyChanged(); }
+        }
+
+        private int pictureTwoRot;
+
+        public int PictureTwoRot
+        {
+            get { return pictureTwoRot; }
+            set { pictureTwoRot = value; OnPropertyChanged(); }
+        }
+
+        private int pictureTreeRot;
+
+        public int PictureTreeRot
+        {
+            get { return pictureTreeRot; }
+            set { pictureTreeRot = value; OnPropertyChanged(); }
+        }
+
+        private int pictureFourRot;
+
+        public int PictureFourRot
+        {
+            get { return pictureFourRot; }
+            set { pictureFourRot = value; OnPropertyChanged(); }
+        }
+
+
+
+        private Image imageSenderTemp;
+
+        public Image ImageSenderTemp
+        {
+            get { return imageSenderTemp; }
+            set { imageSenderTemp = value; OnPropertyChanged(); }
+        }
+
+        private Image imageSenderTemp2;
+
+        public Image ImageSenderTemp2
+        {
+            get { return imageSenderTemp2; }
+            set { imageSenderTemp2 = value; OnPropertyChanged(); }
+        }
+
+        public string holderPictureOne = "";
+        public string holderPictureTwo = "";
 
 
         private string image1;
@@ -54,17 +106,10 @@ namespace JigsawApp
         }
 
 
-
-        public ObservableCollection<Image> imageCollection;
-
         ImagePuz img1 = new ImagePuz { Id = 1, Path = "Zookie1.jpg" };
         ImagePuz img2 = new ImagePuz { Id = 2, Path = "Zookie2.jpg" };
         ImagePuz img3 = new ImagePuz { Id = 3, Path = "Zookie3.jpg" };
         ImagePuz img4 = new ImagePuz { Id = 4, Path = "Zookie4.jpg" };
-
-
-
-
 
         public MainPage()
         {
@@ -73,18 +118,11 @@ namespace JigsawApp
             Image2 = img2.Path;
             Image3 = img3.Path;
             Image4 = img4.Path;
+            StartGame();
+            CheckWinner();
             InitializeComponent();
-            //  this.BindingContext = new ViewModel();
-            
-            imageCollection = new ObservableCollection<Image>();
-
-
         }
        
-          
-
-
-
         void OnTapGestureRecognizerTappedRotate(object sender, EventArgs args)
         {
             var imageSender = (Image)sender;
@@ -105,30 +143,67 @@ namespace JigsawApp
     
             var imageSender = (Image)sender;
 
-            imageSenderTemp = (Image)sender;
+            
 
             if (ImageCounterClick == 0)
             {
+               string path = imageSender.Source.ToString().Replace("File: ", "");
 
-                pictureOnePositionRow = Grid.GetRow(imageSender);
-                pictureOnePositionColumn = Grid.GetColumn(imageSender);
+                imageSenderTemp = (Image)sender;
 
-                imageSenderTemp = imageSender;
+                if (path == img1.Path)
+                    {
+                        pictureOneÍD = img1.Id;
+                        pictureOnePath = img1.Path;
+                    }
+                    else if (path == img2.Path)
+                    {
+                         pictureOneÍD = img2.Id;
+                         pictureOnePath = img2.Path;
+                    }
+                    else if (path == img3.Path)
+                    {
+                        pictureOneÍD = img3.Id;
+                        pictureOnePath = img3.Path;
+                    }
+                    else if (path == img4.Path)
+                    {
+                        pictureOneÍD = img4.Id;
+                        pictureOnePath = img4.Path;
+                    }
+
+                holderPictureOne = imageSender.ClassId;
 
             }
             else if (ImageCounterClick == 1)
             {
-                pictureTwoPositionRow = Grid.GetRow(imageSender);
-                pictureTwoPositionColumn = Grid.GetColumn(imageSender);
+                string path = imageSender.Source.ToString().Replace("File: ", "");
 
-                Grid.SetRow(imageSender, pictureOnePositionRow);
-                Grid.SetColumn(imageSender, pictureOnePositionColumn);
+                if (path == img1.Path)
+                {
+                    pictureTwoÍD = img1.Id;
+                    pictureTwoPath = img1.Path;
+                }
+                else if (path == img2.Path)
+                {
+                    pictureTwoÍD = img2.Id;
+                    pictureTwoPath = img2.Path;
+                }
+                else if (path == img3.Path)
+                {
+                    pictureTwoÍD = img3.Id;
+                    pictureTwoPath = img3.Path;
+                }
+                else if (path == img4.Path)
+                {
+                    pictureTwoÍD = img4.Id;
+                    pictureTwoPath = img4.Path;
+                }
 
-                Grid.SetRow(imageSenderTemp, pictureTwoPositionRow);
-                Grid.SetColumn(imageSenderTemp, pictureTwoPositionColumn);
+                imageSenderTemp2 = imageSender;
+                movePuzzle();
 
 
-                DisplayAlert("Alert", "You have been alerted", "OK");
 
             }
 
@@ -138,20 +213,68 @@ namespace JigsawApp
             {
                 ImageCounterClick = 0;
             }
+
         }
 
-        private void StartGame(object sender, EventArgs e)
+        private void movePuzzle()
         {
 
-            PictureOne.Rotation = RotationGenerator();
-            PictureTwo.Rotation = RotationGenerator();
-            PictureTree.Rotation = RotationGenerator();
-            PictureFour.Rotation = RotationGenerator();
-
-            
+            string pathOne = imageSenderTemp.Source.ToString().Replace("File: ", "");
+            string pathTwo = imageSenderTemp2.Source.ToString().Replace("File: ", "");
 
 
+          //  DisplayAlert("Alert", ImageSenderTemp.ClassId.ToString() + " " + imageSenderTemp2.ClassId.ToString(), "OK");
+
+            if (imageSenderTemp.ClassId == "Image1")
+            {
+                Image1 = pathTwo;
+            }
+            else if(imageSenderTemp.ClassId == "Image2")
+            {
+                Image2 = pathTwo;
+            }
+            else if (imageSenderTemp.ClassId == "Image3")
+            {
+                Image3 = pathTwo;
+            }
+            else if (imageSenderTemp.ClassId == "Image4")
+            {
+                Image4 = pathTwo;
+            }
+
+            if (imageSenderTemp2.ClassId == "Image1")
+            {
+                Image1 = pathOne;
+            }
+            else if (imageSenderTemp2.ClassId == "Image2")
+            {
+                Image2 = pathOne;
+            }
+            else if (imageSenderTemp2.ClassId == "Image3")
+            {
+                Image3 = pathOne;
+            }
+            else if (imageSenderTemp2.ClassId == "Image4")
+            {
+                Image4 = pathOne;
+            }
         }
+
+        private void StartGame()
+        {
+            /*
+             PictureOne.Rotation = RotationGenerator();
+             PictureTwo.Rotation = RotationGenerator();
+             PictureTree.Rotation = RotationGenerator();
+             PictureFour.Rotation = RotationGenerator();
+            */
+           
+            PictureOneRot = RotationGenerator();
+            PictureTwoRot = RotationGenerator();
+            PictureTreeRot = RotationGenerator();
+            PictureFourRot = RotationGenerator();
+        }
+
 
         private int RotationGenerator()
         {
@@ -160,6 +283,11 @@ namespace JigsawApp
             int index = rnd.Next(0, rotationArray.Length);
 
             return rotationArray[index];
+        }
+
+        private void CheckWinner()
+        {
+          
         }
     }
 

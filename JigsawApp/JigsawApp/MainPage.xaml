@@ -24,9 +24,11 @@
 
                 <Image
                     Source="{Binding Image1}"
+                    ClassId="Image1"
                     Grid.Row="0" 
                     Grid.Column="0" 
                     Margin="45,0,0,0"
+                    Rotation="{Binding PictureOneRot}"
                     x:Name="PictureOne">
                 <Image.GestureRecognizers>
                 <TapGestureRecognizer
@@ -40,8 +42,10 @@
                 
                 <Image 
                     Source="{Binding Image2}" 
+                    ClassId="Image2"
                     Grid.Row="0" Grid.Column="1"
                     Margin="0,0,45,0" 
+                    Rotation="{Binding PictureTwoRot}"
                     x:Name="PictureTwo">
                 <Image.GestureRecognizers>
                 <TapGestureRecognizer
@@ -55,8 +59,10 @@
                 
             <Image
                 Source="{Binding Image3}" 
+                ClassId="Image3"
                 Grid.Row="1" Grid.Column="0"
                 Margin="45,0,0,0"
+                Rotation="{Binding PictureTreeRot}"
                 x:Name="PictureTree">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer
@@ -68,8 +74,10 @@
                     </Image.GestureRecognizers>
             </Image>
                 
-            <Image
+            <Image 
                 Source="{Binding Image4}" 
+                ClassId="Image4"
+                Rotation="{Binding PictureFourRot}"
                 Grid.Row="1" Grid.Column="1"
                 Margin="0,0,45,0"
                 x:Name="PictureFour">
@@ -84,12 +92,7 @@
             </Image>
             </Grid>
 
-            <Button 
-                Grid.Row="2"
-                Margin="100,50,100,50"
-                Text="Start"
-                Clicked="StartGame">
-            </Button>
+            
         </Grid>
     </StackLayout>
 
