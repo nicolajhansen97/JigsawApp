@@ -20,34 +20,70 @@ namespace JigsawApp
         public int pictureTwoPositionColumn = 0;
         public Image imageSenderTemp;
 
+
+        private string image1;
+
+        public string Image1
+        {
+            get { return image1; }
+            set { image1 = value; OnPropertyChanged(); }
+        }
+
+
+        private string image2;
+
+        public string Image2
+        {
+            get { return image2; }
+            set { image2 = value; OnPropertyChanged(); }
+        }
+
+        private string image3;
+
+        public string Image3
+        {
+            get { return image3; }
+            set { image3 = value; OnPropertyChanged(); }
+        }
+        private string image4;
+
+        public string Image4
+        {
+            get { return image4; }
+            set { image4 = value; OnPropertyChanged(); }
+        }
+
+
+
         public ObservableCollection<Image> imageCollection;
+
+        ImagePuz img1 = new ImagePuz { Id = 1, Path = "Zookie1.jpg" };
+        ImagePuz img2 = new ImagePuz { Id = 2, Path = "Zookie2.jpg" };
+        ImagePuz img3 = new ImagePuz { Id = 3, Path = "Zookie3.jpg" };
+        ImagePuz img4 = new ImagePuz { Id = 4, Path = "Zookie4.jpg" };
+
 
 
 
 
         public MainPage()
         {
+            BindingContext = this;
+            Image1 = img1.Path;
+            Image2 = img2.Path;
+            Image3 = img3.Path;
+            Image4 = img4.Path;
             InitializeComponent();
-            this.BindingContext = new ViewModel();
-
+            //  this.BindingContext = new ViewModel();
+            
             imageCollection = new ObservableCollection<Image>();
 
 
-     
-            
+        }
+       
+          
 
-           
-        }
-        public class ViewModel
-        {
-            public ViewModel()
-            {
-                ImagePuz img1 = new ImagePuz { Id = 1, Path = "Zookie.jpg" };
-                ImagePuz img2 = new ImagePuz { Id = 2, Path = "Zookie1.jpg" };
-                ImagePuz img3 = new ImagePuz { Id = 3, Path = "Zookie2.jpg" };
-                ImagePuz img4 = new ImagePuz { Id = 4, Path = "Zookie3.jpg" };
-            }
-        }
+
 
         void OnTapGestureRecognizerTappedRotate(object sender, EventArgs args)
         {
@@ -73,6 +109,7 @@ namespace JigsawApp
 
             if (ImageCounterClick == 0)
             {
+
                 pictureOnePositionRow = Grid.GetRow(imageSender);
                 pictureOnePositionColumn = Grid.GetColumn(imageSender);
 
@@ -105,11 +142,13 @@ namespace JigsawApp
 
         private void StartGame(object sender, EventArgs e)
         {
+
             PictureOne.Rotation = RotationGenerator();
             PictureTwo.Rotation = RotationGenerator();
             PictureTree.Rotation = RotationGenerator();
             PictureFour.Rotation = RotationGenerator();
 
+            
 
 
         }

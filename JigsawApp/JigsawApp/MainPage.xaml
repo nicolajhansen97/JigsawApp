@@ -62,7 +62,10 @@
                     <TapGestureRecognizer
                 Tapped="OnTapGestureRecognizerTappedRotate"
                         NumberOfTapsRequired="2"/>
-                </Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedMove">
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
             </Image>
                 
             <Image
@@ -74,7 +77,10 @@
                     <TapGestureRecognizer
                 Tapped="OnTapGestureRecognizerTappedRotate"
                         NumberOfTapsRequired="2"/>
-                </Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                    Tapped="OnTapGestureRecognizerTappedMove">
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
             </Image>
             </Grid>
 
